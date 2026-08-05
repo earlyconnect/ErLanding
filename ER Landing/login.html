@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - EarlyRepair</title>
+    
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/erlandingstyles.css">
+<style>
+    :root {
+        --bg-navy: #0A192F;
+        --card-navy: #112240;
+        --teal-accent: #4eabc0;
+        --teal-hover: #3d8a9c;
+        --cream-white: #f8f9fa;
+        --text-muted: #8892b0;
+        --input-border: #233554;
+        --error-red: #ff6b6b;
+        --success-green: #2ecc71;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    }
+
+    body {
+        background-color: var(--bg-navy);
+        color: var(--cream-white);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* --- STRICT HEADER OVERRIDES --- */
+    .login-header {
+        width: 100% !important;
+        padding: 24px 40px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 16px !important;
+    }
+
+    .header-logo {
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        text-decoration: none !important;
+    }
+
+    /* FORCED IMAGE RECONSTRAIN (Overrides erlandingstyles.css) */
+    .login-header .header-logo img,
+    .login-header img {
+        height: 38px !important;
+        width: auto !important;
+        max-width: 38px !important;
+        max-height: 38px !important;
+        display: block !important;
+        object-fit: contain !important;
+    }
+
+    /* 3D Typography */
+    .header-logo .logo-text {
+        font-weight: 750 !important;
+        font-style: italic !important;
+        font-size: 1.8rem !important;
+        color: #ffffff !important;
+        text-transform: uppercase !important;
+        letter-spacing: -0.03em !important;
+        line-height: 1 !important;
+        white-space: nowrap !important;
+        text-shadow: 
+            1px 1px 0px #c1c7ce,
+            2px 2px 0px #606061,
+            3px 3px 0px #303030,
+            4px 4px 0px #838a92,
+            5px 5px 0px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .back-to-home {
+        color: var(--text-muted) !important;
+        text-decoration: none !important;
+        font-size: 0.95rem !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        white-space: nowrap !important;
+        transition: color 0.2s ease !important;
+        flex-shrink: 0 !important;
+    }
+
+    .back-to-home:hover {
+        color: var(--teal-accent) !important;
+    }
+
+    /* --- LOGIN CARD STYLES --- */
+    .login-container {
+        width: 100%;
+        max-width: 420px;
+        padding: 20px;
+    }
+
+    .login-card {
+        background-color: var(--card-navy);
+        border: 1px solid var(--input-border);
+        border-radius: 12px;
+        padding: 40px 32px;
+        box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+    }
+
+    .login-card h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--cream-white);
+        margin-bottom: 8px;
+        text-align: center;
+    }
+
+    .login-card p.subtitle {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        text-align: center;
+        margin-bottom: 32px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--cream-white);
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 12px 16px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--input-border);
+        border-radius: 6px;
+        color: #ffffff;
+        font-size: 1rem;
+        outline: none;
+    }
+
+    .form-group input:focus {
+        border-color: var(--teal-accent);
+        background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .form-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        font-size: 0.85rem;
+    }
+
+    .remember-me {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-muted);
+        cursor: pointer;
+    }
+
+    .forgot-links a {
+        color: var(--teal-accent);
+        text-decoration: none;
+        display: block;
+        text-align: right;
+        margin-bottom: 4px;
+    }
+
+    .btn-submit {
+        width: 100%;
+        padding: 14px;
+        background-color: var(--teal-accent);
+        color: #0A192F;
+        font-size: 1rem;
+        font-weight: 700;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .btn-submit:hover {
+        background-color: var(--teal-hover);
+    }
+
+    #error-toast {
+        display: none;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+    }
+
+    .login-footer {
+        padding: 24px;
+        color: var(--text-muted);
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    /* --- MOBILE RESPONSIVE OVERRIDES --- */
+    @media (max-width: 600px) {
+        .login-header {
+            padding: 16px 16px !important;
+        }
+
+        .login-header .header-logo img,
+        .login-header img {
+            height: 40px !important;
+            max-width: 40px !important;
+            max-height: 40px !important;
+        }
+
+        .header-logo .logo-text {
+            font-size: 1.55rem !important;
+            text-shadow: 
+                1px 1px 0px #c1c7ce,
+                2px 2px 0px #606061,
+                3px 3px 0px #303030 !important;
+        }
+
+        .back-to-home {
+            font-size: 0.8rem !important;
+        }
+    }
+</style>
+</head>
+<body>
+
+<header class="login-header">
+    <a href="index.html" class="header-logo">
+        <img src="media/logo_symbol_2.png" alt="EarlyRepair Icon">
+        <span class="logo-text">EARLYREPAIR</span>
+    </a>
+    <a href="index.html" class="back-to-home"><i class="fa fa-arrow-left"></i> Back to Home</a>
+</header>
+
+    <main class="login-container">
+        <div class="login-card">
+            <h1>Sign In</h1>
+            <p class="subtitle">Access your EarlyRepair portal</p>
+
+            <div id="error-toast"></div>
+
+            <form id="loginForm" autocomplete="off">
+                <div class="form-group">
+                    <label for="CompanyId">Company ID</label>
+                    <input type="text" id="CompanyId" placeholder="e.g. ServiceSolutions" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="LoginName">User ID</label>
+                    <input type="text" id="LoginName" placeholder="e.g. john.s" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Passwd">Password</label>
+                    <input type="password" id="Passwd" placeholder="••••••••" required>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="RememberMyId" checked>
+                        Remember ID
+                    </label>
+                    <div class="forgot-links">
+                        <a href="/Account/ForgotId1">Forgot ID?</a>
+                        <a href="/Account/ForgotPw1">Forgot Password?</a>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit" id="btnSignIn">Sign In</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="login-footer">
+        Copyright &copy; 2026 EarlyConnect. All rights reserved.
+    </footer>
+
+    <script>
+        const IS_LOCAL_TESTING = false;
+        const AUTH_ENDPOINT = 'https://www.earlyconnect.com/Ajax/SetLogin.ashx'; 
+        const SUCCESS_REDIRECT_URL = 'https://www.earlyconnect.com/Main/Default.aspx';
+
+        $(document).ready(function () {
+            $('#CompanyId').focus();
+
+            $('#loginForm').on('submit', function (e) {
+                e.preventDefault();
+                executeLogin();
+            });
+        });
+
+        function executeLogin() {
+            let companyId = $('#CompanyId').val().trim();
+            let loginName = $('#LoginName').val().trim();
+            let password = $('#Passwd').val();
+
+            if (!companyId || !loginName || !password) {
+                showToast("Please fill in all required fields.", "error");
+                return;
+            }
+
+            $('#btnSignIn').text('Signing in...').prop('disabled', true);
+
+            if (IS_LOCAL_TESTING) {
+                setTimeout(function() {
+                    if (companyId === "demo" && loginName === "admin" && password === "1234") {
+                        showToast("Login successful! Redirecting...", "success");
+                        setTimeout(() => { window.location.href = SUCCESS_REDIRECT_URL; }, 1200);
+                    } else {
+                        showToast("Invalid credentials. (Try Company: demo, User: admin, Pass: 1234)", "error");
+                        $('#btnSignIn').text('Sign In').prop('disabled', false);
+                    }
+                }, 800);
+                return;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: AUTH_ENDPOINT,
+                data: {
+                    CompanyId: companyId,
+                    LoginName: loginName,
+                    Passwd: password,
+                    RememberMeYn: $('#RememberMyId').prop('checked') ? 'Y' : 'N',
+                    PusherYn: 'Y',
+                    BroadcastYn: 'Y',
+                    BrowserType: navigator.userAgent
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                dataType: 'json',
+                success: function (jsonResponse) {
+                    if (jsonResponse && jsonResponse.ErrMsg) {
+                        showToast(jsonResponse.ErrMsg, "error");
+                        $('#btnSignIn').text('Sign In').prop('disabled', false);
+                    } else {
+                        showToast("Sign-in successful! Entering portal...", "success");
+                        setTimeout(() => {
+                            window.location.href = SUCCESS_REDIRECT_URL;
+                        }, 800);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Auth Error Details:", xhr, status, error);
+                    showToast("Connection failed or CORS security blocked the request.", "error");
+                    $('#btnSignIn').text('Sign In').prop('disabled', false);
+                }
+            });
+        }
+
+        function showToast(message, type) {
+            let toast = $('#error-toast');
+            toast.text(message)
+                 .css('background-color', type === "success" ? "var(--success-green)" : "var(--error-red)")
+                 .fadeIn();
+
+            if (type !== "success") {
+                setTimeout(function() {
+                    toast.fadeOut();
+                }, 4000);
+            }
+        }
+    </script>
+</body>
+</html>
