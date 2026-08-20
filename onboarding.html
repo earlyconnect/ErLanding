@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Onboarding | EarlyConnect</title>
+    <link rel="icon" type="image/png" href="https://earlyconnect.com/images/logo_w.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/er-commonform01.css">
+    <link rel="stylesheet" href="css/onboarding.style.css">
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("9P8UXRygLpW5kBLXQ"); // EmailJS Public Key
+        })();
+    </script>
+
+    <!-- Signature Pad Library -->
+    <script src="js/signature_pad.umd.min.js"></script>
+
+</head>
+<body>
+
+<div class="navbar-wrapper">
+    <nav class="navbar-pill">
+        <a href="index.html" class="header-logo">
+            <img src="https://earlyconnect.com/images/logo_w.png" alt="Logo">
+            <span class="logo-text">EARLYREPAIR</span>
+        </a>
+        <a href="javascript:history.back();" class="nav-back-link">&lt; Back</a>
+    </nav>
+</div>
+
+    <section class="demo-section">
+        <div class="onboarding-card">
+            
+            <div class="demo-header">
+                <h1>EarlyRepair Onboarding</h1>
+                <p>Thank you for choosing EarlyRepair! <br>Please configure your company setup, integrations, coverage, and team.</p>
+            </div>
+            
+            <form id="onboardingForm" onsubmit="handleOnboardingSubmit(event)">
+                
+                <!-- SECTION 1: COMPANY INFORMATION -->
+                <div class="section-block">
+                    <div class="section-title">
+                        <span><i class="fa fa-building-o"></i> Company Information</span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label>Company Name <span class="req-star">*</span></label>
+                            <input type="text" id="CompanyName" class="form-control-custom" required placeholder="e.g. New York Repair Co.">
+                        </div>
+                        <div class="form-group">
+                            <label>Shortened Name (&lt;10 chars) <span class="req-star">*</span></label>
+                            <input type="text" id="ShortName" class="form-control-custom" maxlength="10" required placeholder="NYR">
+                        </div>
+                        <div class="form-group">
+                            <label>Time Zone <span class="req-star">*</span></label>
+                            <select id="TimeZone" class="form-control-custom" required>
+                                <option value="" disabled selected>Select Time Zone...</option>
+                                <option value="EST">Eastern (EST)</option>
+                                <option value="CST">Central (CST)</option>
+                                <option value="MST">Mountain (MST)</option>
+                                <option value="PST">Pacific (PST)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label>Address <span class="req-star">*</span></label>
+                            <input type="text" id="Address" class="form-control-custom" required placeholder="123 Main Street">
+                        </div>
+                        <div class="form-group">
+                            <label>Address 2</label>
+                            <input type="text" id="Address2" class="form-control-custom" placeholder="Suite / Unit #">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>City <span class="req-star">*</span></label>
+                            <input type="text" id="City" class="form-control-custom" required placeholder="Brooklyn">
+                        </div>
+                        <div class="form-group">
+                            <label>State <span class="req-star">*</span></label>
+                            <input type="text" id="State" class="form-control-custom" maxlength="2" required placeholder="NY">
+                        </div>
+                        <div class="form-group">
+                            <label>Zip Code <span class="req-star">*</span></label>
+                            <input type="text" id="ZipCode" class="form-control-custom" required placeholder="11201">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Company Email <span class="req-star">*</span></label>
+                            <input type="email" id="CompanyEmail" class="form-control-custom" required placeholder="support@company.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Company Phone No.</label>
+                            <input type="tel" id="CompanyPhone" class="form-control-custom" placeholder="555-123-4567">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 2: ACCOUNT INFORMATION (DISPATCHERS) -->
+<div class="section-block">
+    <div class="section-title">
+        <span><i class="fa fa-share-alt"></i> Account Information (Dispatchers)</span>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>American Home Shield</label>
+            <div class="cred-pair">
+                <input type="text" class="form-control-custom" placeholder="User ID">
+                <input type="password" class="form-control-custom" placeholder="Password">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>LG (GSFS+)</label>
+            <div class="cred-pair">
+                <input type="text" class="form-control-custom" placeholder="User ID">
+                <input type="password" class="form-control-custom" placeholder="Password">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>Midea</label>
+            <div class="cred-pair">
+                <input type="text" class="form-control-custom" placeholder="User ID">
+                <input type="password" class="form-control-custom" placeholder="Password">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>National Service Alliance</label>
+            <div class="cred-pair">
+                <input type="text" class="form-control-custom" placeholder="User ID">
+                <input type="password" class="form-control-custom" placeholder="Password">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>Samsung (GSPN)</label>
+            <div class="cred-pair">
+                <input type="text" class="form-control-custom" placeholder="User ID">
+                <input type="password" class="form-control-custom" placeholder="Password">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>ServiceBench</label>
+            <div class="cred-pair">
+                <input type="text" class="form-control-custom" placeholder="User ID">
+                <input type="password" class="form-control-custom" placeholder="Password">
+            </div>
+        </div>
+    </div>
+
+    <!-- FIXED 2-COLUMN ROW FOR SERVICEPOWER -->
+    <div class="form-row" style="grid-template-columns: 1fr 1fr;">
+        <div class="form-group">
+            <label>ServicePower</label>
+            <div class="cred-pair">
+                <input type="text" class="form-control-custom" placeholder="User ID">
+                <input type="password" class="form-control-custom" placeholder="Password">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- SECTION 3: ACCOUNT INFORMATION (PART DISTRIBUTORS) -->
+<div class="section-block">
+    <div class="section-title">
+        <span><i class="fa fa-truck"></i> Account Information (Part Distributors)</span>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>Encompass</label>
+            <div class="cred-pair">
+                <input type="text" class="form-control-custom" placeholder="User ID">
+                <input type="password" class="form-control-custom" placeholder="Password">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Marcone</label>
+            <div class="cred-pair">
+                <input type="text" class="form-control-custom" placeholder="User ID">
+                <input type="password" class="form-control-custom" placeholder="Password">
+            </div>
+        </div>
+    </div>
+
+    <!-- FIXED 2-COLUMN ROW FOR RELIABLEPARTS -->
+    <div class="form-row" style="grid-template-columns: 1fr 1fr;">
+        <div class="form-group">
+            <label>ReliableParts</label>
+            <div class="cred-pair">
+                <input type="text" class="form-control-custom" placeholder="User ID">
+                <input type="password" class="form-control-custom" placeholder="Password">
+            </div>
+        </div>
+    </div>
+</div>
+
+                <!-- SECTION 4: OFFICE LOCATIONS (3 COLUMN GRID) -->
+                <div class="section-block">
+                    <div class="section-title">
+                        <span><i class="fa fa-map-marker"></i> Office Locations (Parts Destinations)</span>
+                    </div>
+
+                    <table class="dynamic-table" id="TableLocations">
+                        <thead>
+                            <tr>
+                                <th style="width: 32%;">Location Name <span class="req-star">*</span></th>
+                                <th style="width: 28%;">Sales Account</th>
+                                <th>Address <span class="req-star">*</span></th>
+                                <th style="width: 36px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" class="form-control-custom" required placeholder="Main Warehouse"></td>
+                                <td><input type="text" class="form-control-custom" placeholder="ACC-9921"></td>
+                                <td><input type="text" class="form-control-custom" required placeholder="456 Supply Rd, Brooklyn NY"></td>
+                                <td><button type="button" class="btn-row-del" onclick="deleteRow(this)"><i class="fa fa-trash"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn-row-add" onclick="addLocationRow()"><i class="fa fa-plus"></i> Add Office Location</button>
+                </div>
+
+                <!-- SECTION 5: COVERAGE (2 COLUMN GRID WITH BULK CSV) -->
+                <div class="section-block">
+                    <div class="section-title">
+                        <span><i class="fa fa-globe"></i> Coverage (Zip Codes)</span>
+                        <button type="button" class="btn-bulk-import" onclick="triggerUpload('csvCoverageInput')">
+                            <i class="fa fa-file-excel-o"></i> Upload CSV / Excel
+                        </button>
+                        <input type="file" id="csvCoverageInput" accept=".csv, .txt" style="display:none" onchange="parseCoverageCSV(this.files[0])">
+                    </div>
+
+                    <div class="dropzone-box" onclick="triggerUpload('csvCoverageInput')">
+                        <i class="fa fa-cloud-upload"></i>
+                        <span>Drag & Drop Zip Code CSV or click to browse</span>
+                    </div>
+
+                    <table class="dynamic-table" id="TableCoverage">
+                        <thead>
+                            <tr>
+                                <th style="width: 40%;">Zip Code <span class="req-star">*</span></th>
+                                <th>Location Name <span class="req-star">*</span></th>
+                                <th style="width: 36px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" class="form-control-custom" required placeholder="11201"></td>
+                                <td><input type="text" class="form-control-custom" required placeholder="Main Warehouse"></td>
+                                <td><button type="button" class="btn-row-del" onclick="deleteRow(this)"><i class="fa fa-trash"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn-row-add" onclick="addCoverageRow()"><i class="fa fa-plus"></i> Add Coverage Zip</button>
+                </div>
+
+                <!-- SECTION 6: USER INFORMATION (5 COLUMN GRID WITH BULK CSV) -->
+                <div class="section-block">
+                    <div class="section-title">
+                        <span><i class="fa fa-users"></i> User Information</span>
+                        <button type="button" class="btn-bulk-import" onclick="triggerUpload('csvUsersInput')">
+                            <i class="fa fa-file-excel-o"></i> Upload CSV / Excel
+                        </button>
+                        <input type="file" id="csvUsersInput" accept=".csv, .txt" style="display:none" onchange="parseUsersCSV(this.files[0])">
+                    </div>
+
+                    <div class="dropzone-box" onclick="triggerUpload('csvUsersInput')">
+                        <i class="fa fa-cloud-upload"></i>
+                        <span>Drag & Drop Technicians/Users CSV or click to browse</span>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="dynamic-table" id="TableUsers">
+                            <thead>
+                                <tr>
+                                    <th>First Name <span class="req-star">*</span></th>
+                                    <th>Last Name <span class="req-star">*</span></th>
+                                    <th>Tech ID</th>
+                                    <th>Location Name <span class="req-star">*</span></th>
+                                    <th>User Type <span class="req-star">*</span></th>
+                                    <th style="width: 36px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" class="form-control-custom" required placeholder="John"></td>
+                                    <td><input type="text" class="form-control-custom" required placeholder="Doe"></td>
+                                    <td><input type="text" class="form-control-custom" placeholder="TECH101"></td>
+                                    <td><input type="text" class="form-control-custom" required placeholder="Main Warehouse"></td>
+                                    <td>
+                                        <select class="form-control-custom" required>
+                                            <option value="Technician" selected>Technician</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="CSR">CSR</option>
+                                            <option value="Part Mgr">Part Manager</option>
+                                            <option value="Tech Manager">Tech Manager</option>
+                                        </select>
+                                    </td>
+                                    <td><button type="button" class="btn-row-del" onclick="deleteRow(this)"><i class="fa fa-trash"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="button" class="btn-row-add" onclick="addUserRow()"><i class="fa fa-plus"></i> Add User</button>
+                </div>
+
+<!-- SECTION 7: SERVICE LEVEL AGREEMENT (SLA) -->
+<div class="section-block">
+    <div class="section-title">
+        <span><i class="fa fa-file-text-o"></i> Service Level Agreement (SLA)</span>
+        <a id="slaLink" href="https://docs.google.com/document/d/1GCQbmQpCw95mdZZlcqotO2X3xHQpBSmNmhLDNMbdR4A/preview" target="_blank" onclick="unlockSignature()" style="font-size: 0.85rem; color: var(--primary); text-decoration: underline; font-weight: 600;">
+            <i class="fa fa-external-link"></i> View Full SLA
+        </a>
+    </div>
+
+    <div class="sla-terms-box">
+        <p><strong>EarlyConnect Service Level Agreement Terms:</strong></p>
+        <p>
+            By signing below, the undersigned representative agrees to the terms outlined in the 
+            <a href="https://docs.google.com/document/d/1GCQbmQpCw95mdZZlcqotO2X3xHQpBSmNmhLDNMbdR4A/preview" target="_blank" onclick="unlockSignature()" style="color: var(--primary); font-weight: 700; text-decoration: underline;">
+                EarlyRepair SLA Agreement
+            </a>
+        </p>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>Authorized Signer Name <span class="req-star">*</span></label>
+            <!-- DISABLED BY DEFAULT -->
+            <input type="text" id="SlaSignerName" class="form-control-custom" required disabled placeholder="View SLA first to unlock...">
+        </div>
+        <div class="form-group">
+            <label>Title / Position <span class="req-star">*</span></label>
+            <!-- DISABLED BY DEFAULT -->
+            <input type="text" id="SlaSignerTitle" class="form-control-custom" required disabled placeholder="View SLA first to unlock...">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Signature Pad <span class="req-star">*</span></label>
+        <div class="signature-container">
+            <!-- LOCK OVERLAY -->
+            <div id="sigLockOverlay" style="position: absolute; inset: 0; background: rgba(240, 240, 240, 0.85); display: flex; align-items: center; justify-content: center; z-index: 10; border-radius: 10px; font-weight: 700; color: var(--primary); font-size: 0.9rem;">
+                <i class="fa fa-lock" style="margin-right: 8px;"></i> Please click "View Full SLA" above to unlock signing
+            </div>
+            <canvas id="signatureCanvas"></canvas>
+            <button type="button" class="btn-clear-sig" onclick="clearSignature()">Clear</button>
+        </div>
+    </div>
+</div>
+
+<!-- SUBMIT BUTTON -->
+
+                <button type="submit" class="btn-submit">Submit Onboarding Setup</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 EarlyConnect. All rights reserved.</p>
+    </footer>
+
+<!-- External Libraries -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+    (function(){
+        emailjs.init("9P8UXRygLpW5kBLXQ");
+    })();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+
+<!-- 1. Common Form Utilities -->
+<script src="js/er-commonform01.js"></script>
+
+<!-- 2. Onboarding Specific Logic -->
+<script src="js/onboarding.app.js"></script>
+
+</body>
+</html>

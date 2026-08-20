@@ -1,0 +1,395 @@
+/* ==========================================================================
+   PAGE STYLESHEET (onboarding.css)
+   Specific ONLY to onboarding.html.
+   
+   CONTENTS:
+   1. Onboarding Card Container
+   2. Form Rows, Inputs & Dropdowns
+   3. Dynamic Tables & CSV Drag-and-Drop Boxes
+   4. SLA Signature Canvas & Lock Overlay
+   5. Desktop Single-Item Row Alignments
+   6. Mobile Responsive Table-to-Card Conversions
+   ========================================================================== */
+
+/* --- 1. ONBOARDING CARD CONTAINER --- */
+.demo-section {
+    flex: 1;
+    padding: 110px 20px 80px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.onboarding-card {
+    background: var(--white);
+    width: 100%;
+    max-width: 1100px;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(13, 60, 71, 0.08);
+}
+
+.demo-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.demo-header h1 {
+    color: var(--primary);
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.demo-header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.section-block {
+    background: #fafafa;
+    border-left: 4px solid var(--primary);
+    border-radius: 0 12px 12px 0;
+    padding: 24px;
+    margin-bottom: 28px;
+    border-top: 1px solid #f0f0f0;
+    border-right: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.section-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- 2. FORM ROWS, INPUTS & DROPDOWNS --- */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 6px;
+    font-size: 0.88rem;
+}
+
+.req-star {
+    color: var(--req-red);
+    margin-left: 2px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+select,
+.form-control-custom {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 0.92rem;
+    color: var(--text-dark);
+    background-color: var(--white);
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+input:focus, select:focus, .form-control-custom:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(13, 60, 71, 0.15);
+}
+
+.cred-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+/* --- 3. DYNAMIC TABLES & CSV DRAG-AND-DROP --- */
+.dropzone-box {
+    border: 2px dashed var(--border-color);
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: all 0.2s ease;
+}
+
+.dropzone-box:hover {
+    border-color: var(--primary);
+    background: #f0f7f4;
+}
+
+.dropzone-box i {
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin-bottom: 4px;
+}
+
+.dropzone-box span {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    display: block;
+}
+
+.btn-bulk-import {
+    background: var(--accent);
+    color: var(--primary);
+    border: none;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity 0.2s;
+}
+
+.btn-bulk-import:hover {
+    opacity: 0.85;
+}
+
+.dynamic-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    margin-bottom: 12px;
+}
+
+.dynamic-table th {
+    background: #eef7f2;
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--accent);
+}
+
+.dynamic-table td {
+    padding: 8px 6px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+
+#TableUsers th:nth-child(1), #TableUsers td:nth-child(1) { width: 18%; }
+#TableUsers th:nth-child(2), #TableUsers td:nth-child(2) { width: 18%; }
+#TableUsers th:nth-child(3), #TableUsers td:nth-child(3) { width: 16%; }
+#TableUsers th:nth-child(4), #TableUsers td:nth-child(4) { width: 24%; }
+#TableUsers th:nth-child(5), #TableUsers td:nth-child(5) { width: 20%; }
+#TableUsers th:nth-child(6), #TableUsers td:nth-child(6) { width: 40px; }
+
+.btn-row-add {
+    background: #eef7f2;
+    color: var(--primary);
+    border: 1px dashed var(--primary);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s ease;
+}
+
+.btn-row-add:hover {
+    background: var(--accent);
+}
+
+.btn-row-del {
+    background: #fef2f2;
+    color: var(--req-red);
+    border: 1px solid #fecaca;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.btn-submit {
+    width: 100%;
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+/* --- 4. SLA SIGNATURE SECTION --- */
+.sla-terms-box {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 16px;
+    height: 120px;
+    overflow-y: auto;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.signature-container {
+    background: #ffffff;
+    border: 2px dashed var(--border-color);
+    border-radius: 10px;
+    position: relative;
+    width: 100%;
+}
+
+#signatureCanvas {
+    width: 100%;
+    height: 180px;
+    display: block;
+    border-radius: 10px;
+    cursor: crosshair;
+    touch-action: none;
+}
+
+.btn-clear-sig {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #f1f5f9;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-dark);
+}
+
+.btn-clear-sig:hover {
+    background: #e2e8f0;
+}
+
+/* --- 5. DESKTOP GRID ALIGNMENT FIX FOR SINGLE-ITEM ROWS --- */
+@media (min-width: 769px) {
+    .form-row > .form-group:only-child {
+        grid-column: span 1;
+    }
+}
+
+/* --- 6. MOBILE FUNCTIONALITY & RESPONSIVE TABLES --- */
+@media (max-width: 768px) {
+    .onboarding-card { padding: 20px; }
+    .cred-pair { grid-template-columns: 1fr; }
+    .demo-header h1 { font-size: 1.6rem; }
+
+    .form-row {
+        grid-template-columns: 1fr !important;
+    }
+
+    .section-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .btn-bulk-import {
+        width: 100%;
+        justify-content: center;
+        padding: 8px 12px;
+    }
+
+    .dynamic-table, 
+    .dynamic-table thead, 
+    .dynamic-table tbody, 
+    .dynamic-table th, 
+    .dynamic-table td, 
+    .dynamic-table tr {
+        display: block;
+        width: 100% !important;
+    }
+
+    .dynamic-table thead {
+        display: none;
+    }
+
+    .dynamic-table tbody tr {
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+
+    .dynamic-table td {
+        padding: 6px 0;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        width: 100% !important;
+    }
+
+    #TableLocations td:nth-child(1)::before { content: "Location Name *"; font-weight: 700; font-size: 0.78rem; color: var(--primary); }
+    #TableLocations td:nth-child(2)::before { content: "Sales Account"; font-weight: 700; font-size: 0.78rem; color: var(--primary); }
+    #TableLocations td:nth-child(3)::before { content: "Address *"; font-weight: 700; font-size: 0.78rem; color: var(--primary); }
+
+    #TableCoverage td:nth-child(1)::before { content: "Zip Code *"; font-weight: 700; font-size: 0.78rem; color: var(--primary); }
+    #TableCoverage td:nth-child(2)::before { content: "Location Name *"; font-weight: 700; font-size: 0.78rem; color: var(--primary); }
+
+    #TableUsers td:nth-child(1)::before { content: "First Name *"; font-weight: 700; font-size: 0.78rem; color: var(--primary); }
+    #TableUsers td:nth-child(2)::before { content: "Last Name *"; font-weight: 700; font-size: 0.78rem; color: var(--primary); }
+    #TableUsers td:nth-child(3)::before { content: "Tech ID"; font-weight: 700; font-size: 0.78rem; color: var(--primary); }
+    #TableUsers td:nth-child(4)::before { content: "Location Name *"; font-weight: 700; font-size: 0.78rem; color: var(--primary); }
+    #TableUsers td:nth-child(5)::before { content: "User Type *"; font-weight: 700; font-size: 0.78rem; color: var(--primary); }
+
+    .dynamic-table td:last-child {
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px dashed var(--border-color);
+        align-items: stretch;
+    }
+
+    .btn-row-del {
+        width: 100% !important;
+        height: 38px !important;
+        border-radius: 8px !important;
+        gap: 6px;
+        font-weight: 600;
+        font-size: 0.85rem;
+    }
+
+    .btn-row-del::after {
+        content: " Remove Entry";
+    }
+}
