@@ -287,6 +287,7 @@
                         <span>Drag & Drop Technicians/Users CSV or click to browse</span>
                     </div>
 
+                    
                     <div style="overflow-x: auto;">
                         <table class="dynamic-table" id="TableUsers">
                             <thead>
@@ -322,21 +323,21 @@
                     <button type="button" class="btn-row-add" onclick="addUserRow()"><i class="fa fa-plus"></i> Add User</button>
                 </div>
 
-<!-- SECTION 7: SERVICE LEVEL AGREEMENT (SLA) -->
+<!-- SECTION 7: TERMS OF SERVICE -->
 <div class="section-block">
     <div class="section-title">
-        <span><i class="fa fa-file-text-o"></i> Service Level Agreement (SLA)</span>
+        <span><i class="fa fa-file-text-o"></i> Terms of Service</span>
         <a id="slaLink" href="https://docs.google.com/document/d/1GCQbmQpCw95mdZZlcqotO2X3xHQpBSmNmhLDNMbdR4A/preview" target="_blank" onclick="unlockSignature()" style="font-size: 0.85rem; color: var(--primary); text-decoration: underline; font-weight: 600;">
-            <i class="fa fa-external-link"></i> View Full SLA
+            <i class="fa fa-external-link"></i> View Full ToS
         </a>
     </div>
 
     <div class="sla-terms-box">
-        <p><strong>EarlyConnect Service Level Agreement Terms:</strong></p>
+        <p><strong>EarlyRepair Terms of Service (ToS):</strong></p>
         <p>
             By signing below, the undersigned representative agrees to the terms outlined in the 
             <a href="https://docs.google.com/document/d/1GCQbmQpCw95mdZZlcqotO2X3xHQpBSmNmhLDNMbdR4A/preview" target="_blank" onclick="unlockSignature()" style="color: var(--primary); font-weight: 700; text-decoration: underline;">
-                EarlyRepair SLA Agreement
+                EarlyRepair Terms of Service 
             </a>
         </p>
     </div>
@@ -345,12 +346,12 @@
         <div class="form-group">
             <label>Authorized Signer Name <span class="req-star">*</span></label>
             <!-- DISABLED BY DEFAULT -->
-            <input type="text" id="SlaSignerName" class="form-control-custom" required disabled placeholder="View SLA first to unlock...">
+            <input type="text" id="ToSSignerName" class="form-control-custom" required disabled placeholder="View ToS first to unlock...">
         </div>
         <div class="form-group">
             <label>Title / Position <span class="req-star">*</span></label>
             <!-- DISABLED BY DEFAULT -->
-            <input type="text" id="SlaSignerTitle" class="form-control-custom" required disabled placeholder="View SLA first to unlock...">
+            <input type="text" id="ToSSignerTitle" class="form-control-custom" required disabled placeholder="View ToS first to unlock...">
         </div>
     </div>
 
@@ -359,7 +360,7 @@
         <div class="signature-container">
             <!-- LOCK OVERLAY -->
             <div id="sigLockOverlay" style="position: absolute; inset: 0; background: rgba(240, 240, 240, 0.85); display: flex; align-items: center; justify-content: center; z-index: 10; border-radius: 10px; font-weight: 700; color: var(--primary); font-size: 0.9rem;">
-                <i class="fa fa-lock" style="margin-right: 8px;"></i> Please click "View Full SLA" above to unlock signing
+                <i class="fa fa-lock" style="margin-right: 8px;"></i> Please click "View Full ToS" above to unlock signing
             </div>
             <canvas id="signatureCanvas"></canvas>
             <button type="button" class="btn-clear-sig" onclick="clearSignature()">Clear</button>
