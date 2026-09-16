@@ -6,7 +6,7 @@
    1. Onboarding Card Container
    2. Form Rows, Inputs & Dropdowns
    3. Dynamic Tables & CSV Drag-and-Drop Boxes
-   4. SLA Signature Canvas & Lock Overlay
+   4. TOS Signature Canvas & Lock Overlay
    5. Desktop Single-Item Row Alignments
    6. Mobile Responsive Table-to-Card Conversions
    ========================================================================== */
@@ -251,7 +251,7 @@ input:focus, select:focus, .form-control-custom:focus {
     transform: translateY(-1px);
 }
 
-/* --- 4. SLA SIGNATURE SECTION --- */
+/* --- 4. TOS SIGNATURE SECTION --- */
 .sla-terms-box {
     background: #ffffff;
     border: 1px solid var(--border-color);
